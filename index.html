@@ -31,73 +31,73 @@
 
   <script>
 
-  	 (function() {
-  		
-		// private
-		var runButton = document.querySelectorAll("#run-button")[0],
-		    miner = document.querySelectorAll("#miner")[0];
+(function () {
 
-			// Load Rows and cols	
-			function loadMiner() {
+    // private
+    var runButton = document.querySelectorAll("#run-button")[0],
+        miner = document.querySelectorAll("#miner")[0];
 
-				miner.innerHTML = "";
+    // Load Rows and cols	
+    function loadMiner() {
 
-				var rowValue = parseInt(document.querySelectorAll("#rows")[0].value),
-		    		colValue = parseInt(document.querySelectorAll("#cols")[0].value),
-		    		quantityBombs = Math.ceil(rowValue * colValue / 2);
+        miner.innerHTML = "";
 
-				for (var i = 1; i <= rowValue; i++) {
-					var tr = document.createElement("TR");
-					miner.appendChild(tr);
-					for (var j = 1; j <= colValue; j++) {
-				    	var td = document.createElement("TD");
-						tr.appendChild(td);
-					};
-				};	
+        var rowValue = parseInt(document.querySelectorAll("#rows")[0].value),
+            colValue = parseInt(document.querySelectorAll("#cols")[0].value),
+            quantityBombs = Math.ceil(rowValue * colValue / 2);
 
- 				
-				// ADD BOMBS
- 				var	tdList = document.querySelectorAll("td"),
- 					tdLen = document.querySelectorAll("td").length;
+        for (var i = 1; i <= rowValue; i++) {
+            var tr = document.createElement("TR");
+            miner.appendChild(tr);
+            for (var j = 1; j <= colValue; j++) {
+                var td = document.createElement("TD");
+                tr.appendChild(td);
+            };
+        };
 
- 					tdList = Array.prototype.slice.call(tdList);
 
- 					bombs = tdList.sort(function(){
-			        	return 0.5 - Math.random();
-			        }).slice(0, quantityBombs);
+        // ADD BOMBS
+        var tdList = document.querySelectorAll("td"),
+            tdLen = document.querySelectorAll("td").length;
 
-			        function showBombs(argument) {
-		        		bombs.forEach(function(el ,index) {
- 							el.style.backgroundColor="red";
- 						});
-			        }
+        tdList = Array.prototype.slice.call(tdList);
 
-			        function win() {
-			        	showBombs();
-			        	alert("win");
-			        	miner.innerHTML = "";
-			        	// return false;
-			        	
-			        }
+        bombs = tdList.sort(function () {
+            return 0.5 - Math.random();
+        }).slice(0, quantityBombs);
 
-			        function fail() {
-			        	showBombs();
-			        	alert("fail");
-			        	miner.innerHTML = "";
-			        	// return false;
-			        	
-			        }
+        function showBombs(argument) {
+            bombs.forEach(function (el, index) {
+                el.style.backgroundColor = "red";
+            });
+        }
 
-			        for (var j= 0; j < tdList.length; j++) {
-						tdList[j].addEventListener("click", function(e) {
-							bombs[e.currentTarget] ? fail() : win();
-						});
-			        };
-			}
+        function win() {
+            showBombs();
+            alert("win");
+            miner.innerHTML = "";
+            // return false;
 
-			runButton.addEventListener("click", loadMiner);
+        }
 
-  	})();
+        function fail() {
+            showBombs();
+            alert("fail");
+            miner.innerHTML = "";
+            // return false;
+
+        }
+
+        for (var j = 0; j < tdList.length; j++) {
+            tdList[j].addEventListener("click", function (e) {
+                bombs[e.currentTarget] ? fail() : win();
+            });
+        };
+    }
+
+    runButton.addEventListener("click", loadMiner);
+
+})();
 
 
   </script>
