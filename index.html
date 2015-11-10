@@ -85,7 +85,7 @@
         }
 
         bombs.forEach(function (el, index) {
-            el.data("bomb", true);
+            el.setAttribute("data", "bomb");
         });
 
         for (var j = 0; j < tdList.length; j++) {
