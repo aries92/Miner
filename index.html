@@ -84,6 +84,10 @@
             miner.innerHTML = "";
         }
 
+        bombs.forEach(function (el, index) {
+            el.data("bomb", true);
+        });
+
         for (var j = 0; j < tdList.length; j++) {
             tdList[j].addEventListener("click", function (e) {
                 bombs[e.currentTarget] ? fail() : win();
